@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Javascript Game</title>
+    <title>Flappy Bird</title>
     <meta charset="UTF-8">
     <!-- http://proger.i-forge.net/The_smallest_transparent_pixel/ -->
     <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
+<style>
+    html, body{
+        margin: 0;
+        padding: 0;
+        }
+    #c{
+        display: flex;
+        margin: auto;
+        background-image: url(sprite.png);
+        background-position:0 0;
+        background-size:355%;/*proposison of bg image to background*/
+    }
+</style>
 </head>
-<body>
+<body><canvas id = "c" ></canvas>
+    <script src = "game.js" type = "module"></script>
 
 </body>
 </html>
