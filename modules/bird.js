@@ -27,7 +27,8 @@ draw(frame){
         this.frames[frame%this.frames.length].y,
         17, 12,
         this.position.x, this.position.y,// bird position in canvas
-        this.width, this.heigth//bird dimension on canvas
+        this.width, this.heigth
+        )//bird dimension on canvas
     }
 
 jump(){

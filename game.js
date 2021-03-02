@@ -7,7 +7,7 @@ let frame = 0; //current secound
 let score = 0;
 
 const canvasElement = document.getElementById("c");
-const context = canvasElement.getcontext("2d");
+const context = canvasElement.getContext("2d");
 const canvasHeight = Math.floor(window.innerHeight);
 const canvasWidth = Math.floor(canvasHeight * 9/16);
 
@@ -15,12 +15,12 @@ canvasElement.width = canvasWidth;
 canvasElement.height = canvasHeight;
 
 //calculate gravity in 5 sec must pull the fucking bird or else 
-vars.GRAVITY = Math.floor(convasHeight/(-1*5*vars.FPS));
+vars.GRAVITY = Math.floor(canvasHeight/(-1*5*vars.FPS));
 //sprite
 const sprite = new Image();
 sprite.src = "sprite.png";
 //game elements
-convasElement.onclick = ()=> {bird.jump()}
+canvasElement.onclick = ()=> {bird.jump()}
 const bird = new Bird(context, sprite);
 const ground = new Ground(context, sprite);
 const columns = new Column(context, sprite);
@@ -36,7 +36,7 @@ const gameInterval = setInterval(() => {
         alert("Game Over Fucker!!!!!");
         clearInterval(gameInterval);
     }
-    if(bird.isTouchingCulomns(columns)){//check the fat bird if -/-
+    if(bird.isTouchingColumn(columns)){//check the fat bird if -/-
         alert("Game Over Fucker!!!!!");
         clearInterval(gameInterval); 
     }
@@ -69,4 +69,4 @@ function increaseScore(){
 
     // Your game can start here, but define separate functions, don't write everything in here :)
 
-}
+

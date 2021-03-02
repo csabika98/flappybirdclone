@@ -1,6 +1,6 @@
 import vars from "./vars.js";
 
-export default class Column(){
+export default class Column{
     constructor (context, sprite){
         this.context = context;
         this.sprite = sprite;
@@ -19,10 +19,12 @@ export default class Column(){
         } 
 
     }
+
+
     draw(frame){
-        frame = Math.floor(frame * 9 / vars.FPS)
+        frame = Math.floor(frame * 9 / vars.FPS);
         //3 sec pass the whole convas
-        this.position.x -= this.context.canvas.width / (3 * vars.FPS)
+        this.position.x -= this.context.canvas.width / (3 * vars.FPS);
 
         //draw top
         this.context.drawImage(
@@ -30,7 +32,8 @@ export default class Column(){
             56, 323,
             26, 160,
             this.position.x, this.position.topY,
-            this.width, this.height,
+            this.width, this.height
+        )
 
         //draw bottom
         this.context.drawImage(
@@ -38,9 +41,10 @@ export default class Column(){
             56, 323,
             26, 160,
             this.position.x, this.position.bottomY,
-            this.width, this.height,
+            this.width, this.height
         )
     }
+
     revieColumn(){
         this.position.x = this.context.canvas.width;
         //generate a random number between 1-5
@@ -53,3 +57,4 @@ export default class Column(){
         this.onRevive();
     }
 }
+

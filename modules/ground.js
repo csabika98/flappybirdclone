@@ -9,7 +9,7 @@ export default class Ground{
         this.width = 168 * this.context.canvas.width/144;
 
         this.position = {
-            x: 0;
+            x: 0,
             y: this.context.canvas.heigth - this.heigth
         }
         //ground image has 12px patern loop
