@@ -15,17 +15,17 @@ canvasElement.width = canvasWidth;
 canvasElement.height = canvasHeight;
 
 //calculate gravity in 5 sec must pull the fucking bird or else 
-vars.GRAVITY = Math.floor(canvasHeight/(-1*5*vars.FPS));
+vars.GRAVITY = Math.floor(canvasHeight / (-1 * 5 * vars.FPS));
 //sprite
 const sprite = new Image();
 sprite.src = "sprite.png";
 //game elements
 canvasElement.onclick = ()=> {bird.jump()}
-const bird = new Bird(context, sprite);
-const ground = new Ground(context, sprite);
-const columns = new Column(context, sprite);
+    const bird = new Bird(context, sprite);
+    const ground = new Ground(context, sprite);
+    const columns = new Column(context, sprite);
 //bind event if fat bird is succes
-columns.onRevive = increaseScore;
+    columns.onRevive = increaseScore;
 
 const gameInterval = setInterval(() => {
     context.clearRect(0, 0, canvasWidth, canvasHeight) //clear the canvas
@@ -36,7 +36,8 @@ const gameInterval = setInterval(() => {
         alert("Game Over Fucker!!!!!");
         clearInterval(gameInterval);
     }
-    if(bird.isTouchingColumn(columns)){//check the fat bird if -/-
+    if(bird.isTouchingColumn(columns))
+    {//check the fat bird if -/-
         alert("Game Over Fucker!!!!!");
         clearInterval(gameInterval); 
     }

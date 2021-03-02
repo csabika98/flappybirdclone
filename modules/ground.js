@@ -5,12 +5,12 @@ export default class Ground{
         this.context =  context;
         this.sprite = sprite;
 
-        this.heigth = 56 * this.context.canvas.heigth/256;
+        this.height = 56 * this.context.canvas.height/256;
         this.width = 168 * this.context.canvas.width/144;
 
         this.position = {
             x: 0,
-            y: this.context.canvas.heigth - this.heigth
+            y: this.context.canvas.height - this.height
         }
         //ground image has 12px patern loop
         this.frames = [//move 2px on every frame than turn back
@@ -29,11 +29,11 @@ export default class Ground{
 
         this.context.drawImage(
             this.sprite,
-            this.frames[frame%this.frames.length].y,
             this.frames[frame%this.frames.length].x,
+            this.frames[frame%this.frames.length].y,
             168, 56,
-            this.position.x ,this.position.y,
-            this.width, this.heigth
+            this.position.x, this.position.y,
+            this.width, this.height
 
         )
     }

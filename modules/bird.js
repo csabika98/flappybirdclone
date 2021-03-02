@@ -13,35 +13,37 @@ export default class Bird{
             ];// bird on spire
         //birds dimension acording to bg. img.
         this.width = 17 * this.context.canvas.width /144;
-        this.heigth = 12 * this.context.canvas.heigth /256;
+        this.height = 12 * this.context.canvas.height /256;
 
+        }   
+
+
+    draw(frame){
+    //regular frame. spirte seems 9 fps
+        frame = Math.floor(frame * 9/vars.FPS);
+    //add gravity
+        this.position.y = Math.max(0, this.position.y - vars.GRAVITY);
+        this.context.drawImage(
+            this.sprite,
+            this.frames[frame%this.frames.length].x,
+            this.frames[frame%this.frames.length].y,
+            17, 12,
+            this.position.x, this.position.y,// bird position in canvas
+            this.width, this.height
+            )//bird dimension on canvas
     }
 
-
-draw(frame){
-    frame = Math.floor(frame * 9/vars.FPS);
-    this.position.y = Math.max(0, this.position.y-vars.GRAVITY);
-    this.context.drawImage(
-        this.sprite,
-        this.frames[frame%this.frames.length].x,
-        this.frames[frame%this.frames.length].y,
-        17, 12,
-        this.position.x, this.position.y,// bird position in canvas
-        this.width, this.heigth
-        )//bird dimension on canvas
+    jump(){
+        this.position.y += vars.GRAVITY * vars.FPS * .6; 
     }
 
-jump(){
-    this.position.y += vars.GRAVITY * vars.FPS * .6; 
+    isTouchingGround(ground){
+        return(this.position.y + this.height) > (this.context.canvas.height - ground.height)
     }
-
-isTouchingGround(ground){
-    return(this.position.y + this.heigth) > (this.context.canvas.heigth - ground.heigth)
-    }
-isTouchingColumn(columns){
-    if((this.position.x + this.width)>columns.position.x){
-        if (this.position.y < columns.gapTopPosition ||
-            this.position.y > (columns.gapTopPosition + columns.gap))
+    isTouchingColumn(columns){
+        if((this.position.x + this.width)>columns.position.x){
+            if (this.position.y < columns.gapTopPosition ||
+                this.position.y > (columns.gapTopPosition + columns.gap))
             {
             return true;
             }

@@ -10,7 +10,7 @@ export default class Column{
         this.gapTopPosition = this.context.canvas.height * .3;
 
         this.height = 160 * this.context.canvas.height/256;
-        this.width = 168 * this.context.canvas.width/144;
+        this.width = 26 * this.context.canvas.width/144;
 
         this.position = {
             x: this.context.canvas.width, //start right side of canvas
@@ -22,6 +22,11 @@ export default class Column{
 
 
     draw(frame){
+        // check if out of canvas
+        if (this.position.x + this.width < 0){
+            this.revieColumn();
+        }
+        
         frame = Math.floor(frame * 9 / vars.FPS);
         //3 sec pass the whole convas
         this.position.x -= this.context.canvas.width / (3 * vars.FPS);
@@ -38,7 +43,7 @@ export default class Column{
         //draw bottom
         this.context.drawImage(
             this.sprite,
-            56, 323,
+            84, 323,
             26, 160,
             this.position.x, this.position.bottomY,
             this.width, this.height
