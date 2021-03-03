@@ -5,15 +5,15 @@ export default class Bird{
     constructor(context, sprite){
         this.context = context;
         this.sprite = sprite;
-        this.position = {x:0, y:0}//position of the bird
+        this.position = {x:25, y:0}//position of the bird
         this.frames = [
-            {x:3, y:491},
-            {x:31, y:491},
-            {x:59, y:491}
+            {x:3, y:486},
+            {x:31, y:486},
+            {x:59, y:486}
             ];// bird on spire
         //birds dimension acording to bg. img.
-        this.width = 17 * this.context.canvas.width /144;
-        this.height = 12 * this.context.canvas.height /256;
+        this.width = 20 * this.context.canvas.width /144;
+        this.height = 20 * this.context.canvas.height /256;
 
         }   
 
@@ -27,14 +27,14 @@ export default class Bird{
             this.sprite,
             this.frames[frame%this.frames.length].x,
             this.frames[frame%this.frames.length].y,
-            17, 12,
+            20, 20,
             this.position.x, this.position.y,// bird position in canvas
             this.width, this.height
             )//bird dimension on canvas
     }
 
     jump(){
-        this.position.y += vars.GRAVITY * vars.FPS * .6; 
+        this.position.y += vars.GRAVITY * vars.FPS * .3; 
     }
 
     isTouchingGround(ground){

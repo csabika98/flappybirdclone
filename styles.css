@@ -1,0 +1,14 @@
+
+html, body{
+    margin: 0;
+    padding: 0;
+
+    }
+
+#c{
+    display: flex;
+    margin: auto;
+    background-image: url(BG.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}

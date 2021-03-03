@@ -28,6 +28,7 @@ canvasElement.onclick = ()=> {bird.jump()}
     columns.onRevive = increaseScore;
 
 const gameInterval = setInterval(() => {
+    context.imageSmoothingEnabled = false;
     context.clearRect(0, 0, canvasWidth, canvasHeight) //clear the canvas
     bird.draw(frame); // draw the fucker or bird
     ground.draw(frame);//draw the fucking ground
@@ -42,10 +43,8 @@ const gameInterval = setInterval(() => {
         clearInterval(gameInterval); 
     }
 //print Score
-    context.fillstyle = "black";
-    context.textAlign = "center";
-    context.font ="38px Arial";
-    context.fillText(score, canvasWidth / 2, 40);
+    context.font = 'bold 48px serif';
+    context.fillText(score, canvasWidth / 2, canvasHeight-25);
     frame =(frame+1) % vars.FPS;
 }, 1000/vars.FPS)
 
