@@ -9,9 +9,6 @@ html, body{
 #c{
     display: flex;
     margin: auto;
-    background-image: url(BG.png);
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 #stat{
     margin: 10px;

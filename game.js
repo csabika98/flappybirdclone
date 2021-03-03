@@ -24,6 +24,9 @@ vars.GRAVITY = Math.floor(canvasHeight / (-1 * 5 * vars.FPS));
 //sprite
 const sprite = new Image();
 sprite.src = "sprite.png";
+//background
+const bg = new Image();
+bg.src = "BG.png";
 
 game();
 
@@ -32,6 +35,8 @@ function restartGame(){
 }
 function game(){
 let score = 0;
+
+
 
 //game elements
 canvasElement.onclick = ()=> {bird.jump()}
@@ -44,6 +49,7 @@ canvasElement.onclick = ()=> {bird.jump()}
 const gameInterval = setInterval(() => {
     context.imageSmoothingEnabled = false;
     context.clearRect(0, 0, canvasWidth, canvasHeight) //clear the canvas
+    context.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, bg.width/2, bg.height/2);//draw Background
     bird.draw(frame); // draw the fucker or bird
     ground.draw(frame);//draw the fucking ground
     columns.draw(frame);//what do you think column ofc!!!!
@@ -75,8 +81,18 @@ function increaseScore(){
 }
 
 function sceneEnd(){
-    context.clearRect(0, 0, canvasWidth, canvasHeight);
+    let x = 0;
+    let y = 0;
     context.imageSmoothingEnabled = false;
-    context.drawImage(sprite, 395, 59, 96, 21, canvasWidth/16, canvasHeight/4, 96*3, 21*3);
-    //drawImage( image, source_x, source_y, w, h, dest_x, dest_y, w, h );
+    canvasElement.style.backgroundColor ='#0f0f32';
+    let animation = setInterval(function(){
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
+        context.drawImage(bg, x, y, bg.width, bg.height, 0, 0, bg.width/2, bg.height/2);
+        context.drawImage(sprite, 395, 59, 96, 21, canvasWidth/16, canvasHeight/4, 96*3, 21*3);
+        y += 10;
+        console.log(y);
+        if (y==750){
+            clearInterval(animation);
+        }
+     }, 10);
 }
