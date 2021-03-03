@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 html, body{
     margin: 0;
@@ -11,4 +12,10 @@ html, body{
     background-image: url(BG.png);
     background-repeat: no-repeat;
     background-size: cover;
+}
+#stat{
+    margin: 10px;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    user-select: none;
 }

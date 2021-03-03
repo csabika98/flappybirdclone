@@ -4,12 +4,17 @@ import Ground from"./modules/ground.js";
 import Column from"./modules/column.js";
 
 let frame = 0; //current secound
-let score = 0;
+
 
 const canvasElement = document.getElementById("c");
 const context = canvasElement.getContext("2d");
-const canvasHeight = Math.floor(window.innerHeight);
+const canvasHeight = Math.floor(window.innerHeight-128);
 const canvasWidth = Math.floor(canvasHeight * 9/16);
+const currentScore = document.getElementById('current-score');
+const BestScore = document.getElementById('best-score');
+const restartButton = document.getElementById ("restart").addEventListener ("click", restartGame, false);
+
+let highestScore = 0;
 
 canvasElement.width = canvasWidth;
 canvasElement.height = canvasHeight;
@@ -19,6 +24,15 @@ vars.GRAVITY = Math.floor(canvasHeight / (-1 * 5 * vars.FPS));
 //sprite
 const sprite = new Image();
 sprite.src = "sprite.png";
+
+game();
+
+function restartGame(){
+    game();
+}
+function game(){
+let score = 0;
+
 //game elements
 canvasElement.onclick = ()=> {bird.jump()}
     const bird = new Bird(context, sprite);
@@ -34,39 +48,35 @@ const gameInterval = setInterval(() => {
     ground.draw(frame);//draw the fucking ground
     columns.draw(frame);//what do you think column ofc!!!!
     if(bird.isTouchingGround(ground)){//check the fat bird if he/she can continue this shity game!
-        alert("Game Over! Refresh to retry");
+        if(score > highestScore){
+            highestScore = score;
+        }
         clearInterval(gameInterval);
+        sceneEnd();
     }
     if(bird.isTouchingColumn(columns))
     {//check the fat bird if -/-
-        alert("Game Over! Refresh to retry");
-        clearInterval(gameInterval); 
+        if(score > highestScore){
+            highestScore = score;
+        }
+        clearInterval(gameInterval);
+        sceneEnd();
     }
 //print Score
-    context.font = 'bold 48px serif';
-    context.fillText(score, canvasWidth / 2, canvasHeight-25);
     frame =(frame+1) % vars.FPS;
+    BestScore.textContent = 'Highest score:' + highestScore;
+    currentScore.textContent = 'Current score: ' + score;
 }, 1000/vars.FPS)
+
 
 function increaseScore(){
     score += 1;
 }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-//initGame();
-
-//function initGame() {
-
-    // Your game can start here, but define separate functions, don't write everything in here :)
-
-
+function sceneEnd(){
+    context.clearRect(0, 0, canvasWidth, canvasHeight);
+    context.imageSmoothingEnabled = false;
+    context.drawImage(sprite, 395, 59, 96, 21, canvasWidth/16, canvasHeight/4, 96*3, 21*3);
+    //drawImage( image, source_x, source_y, w, h, dest_x, dest_y, w, h );
+}

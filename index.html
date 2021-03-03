@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Flappy Pigeon!</title>
+    <title>Flappy Bird</title>
     <meta charset="UTF-8">
     <!-- http://proger.i-forge.net/The_smallest_transparent_pixel/ -->
     <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
     <link rel="stylesheet" href="styles.css">
+    <script src = "game.js" type = "module"></script>
 </head>
 <body>
+    <div id="stat">
+        <p id="best-score"></p>
+        <p id="current-score"></p>
+        <button id="restart">RestartGame</button>
+    </div>
     <canvas id = "c" ></canvas>
-    <script src = "game.js" type = "module"></script>
-    <div id="stat"></div>
+
+
 </body>
 </html>
