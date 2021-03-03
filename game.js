@@ -34,12 +34,12 @@ const gameInterval = setInterval(() => {
     ground.draw(frame);//draw the fucking ground
     columns.draw(frame);//what do you think column ofc!!!!
     if(bird.isTouchingGround(ground)){//check the fat bird if he/she can continue this shity game!
-        alert("Game Over!");
+        alert("Game Over! Refresh to retry");
         clearInterval(gameInterval);
     }
     if(bird.isTouchingColumn(columns))
     {//check the fat bird if -/-
-        alert("Game Over!");
+        alert("Game Over! Refresh to retry");
         clearInterval(gameInterval); 
     }
 //print Score
