@@ -27,7 +27,8 @@ sprite.src = "sprite.png";
 //background
 const bg = new Image();
 bg.src = "BG.png";
-
+const bg2 = new Image();
+bg2.src = "map2.png";
 game();
 
 function restartGame(){
@@ -49,6 +50,9 @@ canvasElement.onclick = ()=> {bird.jump()}
 const gameInterval = setInterval(() => {
     context.imageSmoothingEnabled = false;
     context.clearRect(0, 0, canvasWidth, canvasHeight) //clear the canvas
+    if (score >= 5)
+    context.drawImage(bg2, 0, 0, bg2.width, bg2.height, 0, 0, bg2.width/4, bg2.height/4);
+    if (score <= 5)
     context.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, bg.width/2, bg.height/2);//draw Background
     bird.draw(frame); // draw the fucker or bird
     ground.draw(frame);//draw the fucking ground
