@@ -11,9 +11,22 @@ const canvasHeight = Math.floor(window.innerHeight-128);
 const canvasWidth = Math.floor(canvasHeight * 9/16);
 const currentScore = document.getElementById('current-score');
 const BestScore = document.getElementById('best-score');
-
+let playAudio = false;
 var audio = new Audio('sound.mp3');
 
+
+function sound() { 
+    playAudio=!playAudio;
+    audio.muted= playAudio;
+
+
+  } 
+
+  document.getElementById("sound").addEventListener("click", function() {
+    sound();
+  });
+  
+  
 let gameover = false;
 let nostStarted = true;
 
@@ -97,7 +110,7 @@ function game(){
     let score = 0;
     gameover = false;
     nostStarted = false;
-
+    audio.play();
     //calculate gravity in 5 sec must pull the fucking bird or else 
     vars.GRAVITY = Math.floor(canvasHeight / (-1 * 5 * vars.FPS));
 
