@@ -11,7 +11,7 @@ const canvasHeight = Math.floor(window.innerHeight-128);
 const canvasWidth = Math.floor(canvasHeight * 9/16);
 const currentScore = document.getElementById('current-score');
 const BestScore = document.getElementById('best-score');
-const restartButton = document.getElementById ("restart").addEventListener ("click", restartGame, false);
+let gameover = false;
 
 let highestScore = 0;
 
@@ -34,6 +34,7 @@ function restartGame(){
 function game(){
     let frame = 0; //current secound
     let score = 0;
+    gameover = false;
 
     //calculate gravity in 5 sec must pull the fucking bird or else 
     vars.GRAVITY = Math.floor(canvasHeight / (-1 * 5 * vars.FPS));
@@ -63,6 +64,7 @@ function game(){
                 highestScore = score;
             }
             clearInterval(gameInterval);
+            gameover = true;
             sceneEnd();
         }
         if(bird.isTouchingColumn(columns))
@@ -71,6 +73,7 @@ function game(){
                 highestScore = score;
             }
             clearInterval(gameInterval);
+            gameover = true;
             sceneEnd();
         }
     //print Score
