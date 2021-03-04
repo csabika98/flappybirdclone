@@ -12,6 +12,7 @@ const canvasWidth = Math.floor(canvasHeight * 9/16);
 const currentScore = document.getElementById('current-score');
 const BestScore = document.getElementById('best-score');
 let gameover = false;
+let nostStarted = true;
 
 let highestScore = 0;
 
@@ -26,7 +27,51 @@ const bg = new Image();
 bg.src = "BG.png";
 const bg2 = new Image();
 bg2.src = "map2.png";
-game();
+
+main();
+
+function main(){
+    nostStarted = true;
+    context.imageSmoothingEnabled = false;
+    let canvasSize = {
+        x:0,
+        y:0,
+        width:canvasWidth,
+        height:canvasHeight
+    };
+    //get mouse pos for canvas
+    function getMousePos(canvas, event) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+            x: event.clientX - rect.left,
+            y: event.clientY - rect.top
+        };
+        }
+
+    function isInside(pos, rect){
+        return pos.x > rect.x && pos.x < rect.x+rect.width && pos.y < rect.y+rect.height && pos.y > rect.y
+    }
+        
+    //render images every 0.1 frame
+        const interval = setInterval(function(){
+            context.clearRect(0, 0, canvasWidth, canvasHeight) //clear images
+
+            context.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, bg.width/2, bg.height/2);
+            context.drawImage(sprite,292,82,58,57,canvasWidth/4,canvasHeight/2.5,58*3,57*3); 
+            context.drawImage(sprite,295,59,92,25,canvasWidth/16,canvasHeight/4,92*3,25*3);
+        }, 100);
+    // Listen to click to start game
+            canvasElement.addEventListener('click', function(evt) {
+                var mousePos = getMousePos(canvasElement, evt);
+            
+                if (isInside(mousePos,canvasSize) && nostStarted) {
+                    clearInterval(interval);
+                    game();
+                    console.log('startGahe');
+                }
+            }, false);
+
+}
 
 function restartGame(){
     game();
@@ -35,6 +80,7 @@ function game(){
     let frame = 0; //current secound
     let score = 0;
     gameover = false;
+    nostStarted = false;
 
     //calculate gravity in 5 sec must pull the fucking bird or else 
     vars.GRAVITY = Math.floor(canvasHeight / (-1 * 5 * vars.FPS));

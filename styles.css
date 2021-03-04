@@ -9,6 +9,9 @@ html, body{
 #c{
     display: flex;
     margin: auto;
+    border: 10px solid rgb(0, 0, 0);
+    -webkit-box-shadow: 1px 1px 15px 5px rgba(0,0,0,0.84); 
+    box-shadow: 1px 1px 15px 5px rgba(0,0,0,0.84);
 }
 #stat{
     margin: 10px;
