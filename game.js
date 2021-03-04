@@ -1,9 +1,9 @@
-import Bird from "./modules/bird.js";
+//draw map2import Bird from "./modules/bird.js";
 import vars from "./modules/vars.js";
 import Ground from"./modules/ground.js";
 import Column from"./modules/column.js";
 
-let frame = 0; //current secound
+let frame = 0; //current secound//draw map2
 
 
 const canvasElement = document.getElementById("c");
@@ -50,8 +50,8 @@ canvasElement.onclick = ()=> {bird.jump()}
 const gameInterval = setInterval(() => {
     context.imageSmoothingEnabled = false;
     context.clearRect(0, 0, canvasWidth, canvasHeight) //clear the canvas
-    if (score >= 5)
-    context.drawImage(bg2, 0, 0, bg2.width, bg2.height, 0, 0, bg2.width/4, bg2.height/4);
+    if (score >= 5)//draw map2
+    context.drawImage(bg2, 0, 0, bg2.width, bg2.height, 0, 0, bg2.width/4, bg2.height/4);//draw map2
     if (score <= 5)
     context.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, bg.width/2, bg.height/2);//draw Background
     bird.draw(frame); // draw the fucker or bird
