@@ -46,14 +46,15 @@ bg.src = "stage/map.png";
 const bg2 = new Image();
 bg2.src = "stage/map2.png";
 const bg3 = new Image();
-bg3.src = "stage/map3.png"
+bg3.src = "stage/map3.png";
 const bg4 = new Image();
-bg4.src = "stage/map4.png"
+bg4.src = "stage/map4.png";
 const bg5 = new Image();
-bg5.src = "stage/map5.png"
+bg5.src = "stage/map5.png";
 const bg6 = new Image();
-bg6.src = "stage/map6.png"
-
+bg6.src = "stage/map6.png";
+const win = new Image();
+win.src = "youwon2.png";
 
 main();
 
@@ -144,11 +145,11 @@ function game(){
             context.drawImage(bg5, 0, 0, bg5.width, bg5.height, 0, 0, bg5.width/2, bg5.height/2);
         }if (score > 10){
             current_map = bg6;
-            context.drawImage(bg6, 0, 0, bg6.width, bg6.height, 0, 0, bg6.width/2, bg6.height/2);
-        } if (score >13){
+            context.drawImage(bg6, 0, 0, bg6.width, bg6.height, 0, 0, bg6.width/3, bg6.height/3);
+        } if (score > 12){
             clearInterval(gameInterval)
             gameover = true;
-            sceneEnd();
+            sceneWin();
 
         }
         bird.draw(frame); // draw the fucker or bird
@@ -161,6 +162,7 @@ function game(){
             clearInterval(gameInterval);
             gameover = true;
             sceneEnd();
+        
         }
         if(bird.isTouchingColumn(columns))
         {//check the fat bird if -/-
@@ -170,6 +172,7 @@ function game(){
             clearInterval(gameInterval);
             gameover = true;
             sceneEnd();
+          
         }
     //print Score
         frame =(frame+1) % vars.FPS;
@@ -201,6 +204,52 @@ function sceneEnd(){
         if (x==750){
             clearInterval(animation);
             context.drawImage(sprite, 395, 59, 96, 21, canvasWidth/16, canvasHeight/4, 96*3, 21*3); //Gameover text
+            context.drawImage(sprite, 355, 119, 52, 29, canvasWidth/3, canvasHeight/2, 52*2, 29*2); // button to restart
+        }
+     }, 10);
+     //get mouse pos for canvas
+     function getMousePos(canvas, event) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+            x: event.clientX - rect.left,
+            y: event.clientY - rect.top
+        };
+    }
+    
+    //Function to check whether a point is inside a rectangle
+    function isInside(pos, rect){
+        return pos.x > rect.x && pos.x < rect.x+rect.width && pos.y < rect.y+rect.height && pos.y > rect.y
+    }
+    
+
+    //listen to canvas clicks
+    canvasElement.addEventListener('click', function(evt) {
+        var mousePos = getMousePos(canvasElement, evt);
+    
+        if (isInside(mousePos,restartButton) && gameover) {
+            restartGame();
+        }
+    }, false);
+}
+
+function sceneWin(){
+    gameover = true;
+    let x = 0;
+    let y = 0;
+    let restartButton = {
+        x:canvasWidth/4,
+        y:canvasHeight/2,
+        width:52*2,
+        height:29*2
+    };
+
+    let animation = setInterval(function(){
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
+        context.drawImage(current_map, x, y, bg.width, bg.height, 0, 0, bg.width/2, bg.height/2);
+        x += 10;
+        if (x==750){
+            clearInterval(animation);
+            context.drawImage(win, 0, 0, win.width, win.height, 50, 50, win.width*1, win.height*1);
             context.drawImage(sprite, 355, 119, 52, 29, canvasWidth/3, canvasHeight/2, 52*2, 29*2); // button to restart
         }
      }, 10);
