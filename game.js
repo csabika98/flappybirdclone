@@ -38,6 +38,8 @@ bg6.src = "stage/map6.png"
 
 
 main();
+var audio = new Audio('sound.mp3');
+audio.play();
 
 function main(){
     nostStarted = true;
