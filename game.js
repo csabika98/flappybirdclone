@@ -82,7 +82,6 @@ function main(){
                 if (isInside(mousePos,canvasSize) && nostStarted) {
                     clearInterval(interval);
                     game();
-                    console.log('startGahe');
                 }
             }, false);
 
@@ -118,19 +117,19 @@ function game(){
         if (score <= 1){
             current_map = bg;
             context.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, bg.width/2, bg.height/2);
-        }else if (score >= 2){
+        }if (score >= 2){
             current_map = bg2;
             context.drawImage(bg2, 0, 0, bg2.width, bg2.height, 0, 0, bg2.width/2, bg2.height/2);//draw Background
-        }else if (score > 4 ){
+        }if (score > 4 ){
             current_map = bg3;
             context.drawImage(bg3, 0, 0, bg3.width, bg3.height, 0, 0, bg3.width/2, bg3.height/2);
-        }else if (score > 6){
+        }if (score > 6){
             current_map = bg4;
             context.drawImage(bg4, 0, 0, bg4.width, bg4.height, 0, 0, bg4.width, bg4.height);
-        }else if(score >= 8){
+        }if(score >= 8){
             current_map = bg5;
             context.drawImage(bg5, 0, 0, bg5.width, bg5.height, 0, 0, bg5.width/2, bg5.height/2);
-        }else if (score > 10){
+        }if (score > 10){
             current_map = bg6;
             context.drawImage(bg6, 0, 0, bg6.width, bg6.height, 0, 0, bg6.width/2, bg6.height/2);
         }
