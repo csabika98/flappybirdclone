@@ -145,6 +145,11 @@ function game(){
         }if (score > 10){
             current_map = bg6;
             context.drawImage(bg6, 0, 0, bg6.width, bg6.height, 0, 0, bg6.width/2, bg6.height/2);
+        } if (score >13){
+            clearInterval(gameInterval)
+            gameover = true;
+            sceneEnd();
+
         }
         bird.draw(frame); // draw the fucker or bird
         ground.draw(frame);//draw the fucking ground
