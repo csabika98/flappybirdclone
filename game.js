@@ -11,8 +11,13 @@ const canvasHeight = Math.floor(window.innerHeight-128);
 const canvasWidth = Math.floor(canvasHeight * 9/16);
 const currentScore = document.getElementById('current-score');
 const BestScore = document.getElementById('best-score');
+
+var audio = new Audio('sound.mp3');
+
 let gameover = false;
 let nostStarted = true;
+
+let current_map = null;
 
 let highestScore = 0;
 
@@ -38,8 +43,7 @@ bg6.src = "stage/map6.png"
 
 
 main();
-var audio = new Audio('sound.mp3');
-audio.play();
+
 
 function main(){
     nostStarted = true;
@@ -111,18 +115,25 @@ function game(){
     const gameInterval = setInterval(() => {
         context.imageSmoothingEnabled = false;const bg3 = new Image();
         context.clearRect(0, 0, canvasWidth, canvasHeight) //clear the canvas
-        if (score <= 1)
-        context.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, bg.width/2, bg.height/2);
-        if (score >= 2)
-        context.drawImage(bg2, 0, 0, bg2.width, bg2.height, 0, 0, bg2.width/2, bg2.height/2);//draw Background
-        if (score > 4 )
-        context.drawImage(bg3, 0, 0, bg3.width, bg3.height, 0, 0, bg3.width/2, bg3.height/2);
-        if (score > 6)
-        context.drawImage(bg4, 0, 0, bg4.width, bg4.height, 0, 0, bg4.width, bg4.height);
-        if(score >= 8)
-        context.drawImage(bg5, 0, 0, bg5.width, bg5.height, 0, 0, bg5.width/2, bg5.height/2);
-        if (score > 10)
-        context.drawImage(bg6, 0, 0, bg6.width, bg6.height, 0, 0, bg6.width/2, bg6.height/2);
+        if (score <= 1){
+            current_map = bg;
+            context.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, bg.width/2, bg.height/2);
+        }else if (score >= 2){
+            current_map = bg2;
+            context.drawImage(bg2, 0, 0, bg2.width, bg2.height, 0, 0, bg2.width/2, bg2.height/2);//draw Background
+        }else if (score > 4 ){
+            current_map = bg3;
+            context.drawImage(bg3, 0, 0, bg3.width, bg3.height, 0, 0, bg3.width/2, bg3.height/2);
+        }else if (score > 6){
+            current_map = bg4;
+            context.drawImage(bg4, 0, 0, bg4.width, bg4.height, 0, 0, bg4.width, bg4.height);
+        }else if(score >= 8){
+            current_map = bg5;
+            context.drawImage(bg5, 0, 0, bg5.width, bg5.height, 0, 0, bg5.width/2, bg5.height/2);
+        }else if (score > 10){
+            current_map = bg6;
+            context.drawImage(bg6, 0, 0, bg6.width, bg6.height, 0, 0, bg6.width/2, bg6.height/2);
+        }
         bird.draw(frame); // draw the fucker or bird
         ground.draw(frame);//draw the fucking ground
         columns.draw(frame);//what do you think column ofc!!!!
@@ -166,12 +177,11 @@ function sceneEnd(){
         height:29*2
     };
 
-    canvasElement.style.backgroundColor ='#0f0f32';
+    canvasElement.style.backgroundColor ='black';
     let animation = setInterval(function(){
         context.clearRect(0, 0, canvasWidth, canvasHeight);
-        context.drawImage(bg, x, y, bg.width, bg.height, 0, 0, bg.width/2, bg.height/2);
+        context.drawImage(current_map, x, y, bg.width, bg.height, 0, 0, bg.width/2, bg.height/2);
         y += 10;
-        console.log(y);
         if (y==750){
             clearInterval(animation);
             context.drawImage(sprite, 395, 59, 96, 21, canvasWidth/16, canvasHeight/4, 96*3, 21*3); //Gameover text
