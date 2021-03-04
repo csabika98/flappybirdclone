@@ -176,12 +176,11 @@ function sceneEnd(){
         height:29*2
     };
 
-    canvasElement.style.backgroundColor ='black';
     let animation = setInterval(function(){
         context.clearRect(0, 0, canvasWidth, canvasHeight);
         context.drawImage(current_map, x, y, bg.width, bg.height, 0, 0, bg.width/2, bg.height/2);
-        y += 10;
-        if (y==750){
+        x += 10;
+        if (x==750){
             clearInterval(animation);
             context.drawImage(sprite, 395, 59, 96, 21, canvasWidth/16, canvasHeight/4, 96*3, 21*3); //Gameover text
             context.drawImage(sprite, 355, 119, 52, 29, canvasWidth/3, canvasHeight/2, 52*2, 29*2); // button to restart
