@@ -52,9 +52,9 @@ function game(){
     const gameInterval = setInterval(() => {
         context.imageSmoothingEnabled = false;
         context.clearRect(0, 0, canvasWidth, canvasHeight) //clear the canvas
-        if (score >= 5)
+        if (score >= 2)
         context.drawImage(bg2, 0, 0, bg2.width, bg2.height, 0, 0, bg2.width/2, bg2.height/2);
-        if (score <= 5)
+        if (score <= 3)
         context.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, bg.width/2, bg.height/2);//draw Background
         bird.draw(frame); // draw the fucker or bird
         ground.draw(frame);//draw the fucking ground
