@@ -95,8 +95,8 @@ function sceneEnd(){
     let restartButton = {
         x:canvasWidth/4,
         y:canvasHeight/2,
-        width:52*3,
-        height:29*3
+        width:52*2,
+        height:29*2
     };
 
     canvasElement.style.backgroundColor ='#0f0f32';
