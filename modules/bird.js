@@ -34,7 +34,7 @@ export default class Bird{
     }
 
     jump(){
-        this.position.y += vars.GRAVITY * vars.FPS * .5; 
+        this.position.y += vars.GRAVITY * vars.FPS * .6; 
     }
 
     isTouchingGround(ground){

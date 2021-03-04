@@ -24,9 +24,18 @@ const sprite = new Image();
 sprite.src = "sprite.png";
 //background
 const bg = new Image();
-bg.src = "BG.png";
+bg.src = "stage/map.png";
 const bg2 = new Image();
 bg2.src = "map2.png";
+const bg3 = new Image();
+bg3.src = "stage/map3.png"
+const bg4 = new Image();
+bg4.src = "stage/map4.png"
+const bg5 = new Image();
+bg5.src = "stage/map5.png"
+const bg6 = new Image();
+bg6.src = "stage/map6.png"
+
 
 main();
 
@@ -73,6 +82,8 @@ function main(){
 
 }
 
+
+
 function restartGame(){
     game();
 }
@@ -96,12 +107,21 @@ function game(){
         columns.onRevive = increaseScore;
 
     const gameInterval = setInterval(() => {
-        context.imageSmoothingEnabled = false;
+        context.imageSmoothingEnabled = false;const bg3 = new Image();
+        bg3.src = "stage/map3.png"
         context.clearRect(0, 0, canvasWidth, canvasHeight) //clear the canvas
         if (score >= 2)
-        context.drawImage(bg2, 0, 0, bg2.width, bg2.height, 0, 0, bg2.width/2, bg2.height/2);
+        context.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, bg.width/2, bg.height/2);
         if (score <= 3)
-        context.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, bg.width/2, bg.height/2);//draw Background
+        context.drawImage(bg2, 0, 0, bg2.width, bg2.height, 0, 0, bg2.width/2, bg2.height/2);//draw Background
+        if (score<5)
+        context.drawImage(bg3, 0, 0, bg3.width, bg3.height, 0, 0, bg3.width/2, bg3.height/2);
+        if (score<7)
+        context.drawImage(bg4, 0, 0, bg4.width, bg4.height, 0, 0, bg4.width/2, bg4.height/2);
+        if (score<9)
+        context.drawImage(bg5, 0, 0, bg5.width, bg5.height, 0, 0, bg5.width/2, bg5.height/2);
+        if (score<11)
+        context.drawImage(bg6, 0, 0, bg6.width, bg6.height, 0, 0, bg6.width/2, bg6.height/2);
         bird.draw(frame); // draw the fucker or bird
         ground.draw(frame);//draw the fucking ground
         columns.draw(frame);//what do you think column ofc!!!!
