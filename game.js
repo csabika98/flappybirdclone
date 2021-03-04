@@ -108,19 +108,18 @@ function game(){
 
     const gameInterval = setInterval(() => {
         context.imageSmoothingEnabled = false;const bg3 = new Image();
-        bg3.src = "stage/map3.png"
         context.clearRect(0, 0, canvasWidth, canvasHeight) //clear the canvas
-        if (score >= 2)
+        if (score <= 1)
         context.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, bg.width/2, bg.height/2);
-        if (score <= 3)
+        if (score >= 2)
         context.drawImage(bg2, 0, 0, bg2.width, bg2.height, 0, 0, bg2.width/2, bg2.height/2);//draw Background
-        if (score<5)
+        if (score > 4 )
         context.drawImage(bg3, 0, 0, bg3.width, bg3.height, 0, 0, bg3.width/2, bg3.height/2);
-        if (score<7)
-        context.drawImage(bg4, 0, 0, bg4.width, bg4.height, 0, 0, bg4.width/2, bg4.height/2);
-        if (score<9)
+        if (score > 6)
+        context.drawImage(bg4, 0, 0, bg4.width, bg4.height, 0, 0, bg4.width, bg4.height);
+        if(score >= 8)
         context.drawImage(bg5, 0, 0, bg5.width, bg5.height, 0, 0, bg5.width/2, bg5.height/2);
-        if (score<11)
+        if (score > 10)
         context.drawImage(bg6, 0, 0, bg6.width, bg6.height, 0, 0, bg6.width/2, bg6.height/2);
         bird.draw(frame); // draw the fucker or bird
         ground.draw(frame);//draw the fucking ground
